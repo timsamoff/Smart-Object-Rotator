@@ -1,6 +1,18 @@
 using UnityEngine;
 using System.Collections;
-using static UnityEngine.UIElements.UxmlAttributeDescription;
+
+[System.Serializable]
+public struct Range
+{
+    public float low;
+    public float high;
+
+    public Range(float low, float high)
+    {
+        this.low = low;
+        this.high = high;
+    }
+}
 
 public class SmartObjectRotator : MonoBehaviour
 {
@@ -18,34 +30,32 @@ public class SmartObjectRotator : MonoBehaviour
     private float timeBeforeInitialRotation = 0f;
 
     [SerializeField]
-    private float transitionDuration = 1f;
+    private float destinationDuration = 1f;
 
     [SerializeField]
-    private float destinationDuration = 1f;
+    private float transitionDuration = 1f;
 
     private float originalDestinationDuration;
 
     [SerializeField]
     private bool randomizeStartRotation = true;
 
-    [Header("Transition Type")]
     [SerializeField]
     private TransitionType transitionType = TransitionType.Linear;
 
-    [Header("Exponential Logarithmic Settings")]
     [SerializeField]
     private float logarithmicRolloff = 1.0f;
 
-    // Define ranges for each axis
+    // Define ranges for each axis using the custom Range struct
     [Header("Rotation Ranges (-1.0 - 1.0)")]
     [SerializeField]
-    private Vector2 xRange = new Vector2(-1.0f, 1.0f);
+    private Range xRange = new Range(-1.0f, 1.0f);
 
     [SerializeField]
-    private Vector2 yRange = new Vector2(-1.0f, 1.0f);
+    private Range yRange = new Range(-1.0f, 1.0f);
 
     [SerializeField]
-    private Vector2 zRange = new Vector2(-1.0f, 1.0f);
+    private Range zRange = new Range(-1.0f, 1.0f);
 
     [Header("Rotation Values")]
     [SerializeField, Range(-1.0f, 1.0f)]
@@ -63,7 +73,7 @@ public class SmartObjectRotator : MonoBehaviour
         originalDestinationDuration = destinationDuration;
         destinationDuration = timeBeforeInitialRotation;
 
-        Debug.Log("Temporary destinationDuration set to:" + " " + timeBeforeInitialRotation);
+        // Debug.Log("Temporary destinationDuration set to:" + " " + timeBeforeInitialRotation);
 
         if (randomizeStartRotation)
         {
@@ -134,7 +144,7 @@ public class SmartObjectRotator : MonoBehaviour
                 // Revert destinationDuration back to the original value
                 destinationDuration = originalDestinationDuration;
 
-                Debug.Log("destinationDuration set to:" + " " + destinationDuration);
+                // Debug.Log("destinationDuration set to:" + " " + destinationDuration);
             }
 
             // Match the target values
@@ -146,10 +156,10 @@ public class SmartObjectRotator : MonoBehaviour
         }
     }
 
-    private float GetClampedRandomRotation(Vector2 range)
+    private float GetClampedRandomRotation(Range range)
     {
         float[] possibleValues = { -1.0f, -0.9f, -0.8f, -0.7f, -0.6f, -0.5f, -0.4f, -0.3f, -0.2f, -0.1f, 0.0f, 0.1f, 0.2f, 0.3f, 0.4f, 0.5f, 0.6f, 0.7f, 0.8f, 0.9f, 1.0f };
-        return Mathf.Clamp(possibleValues[Random.Range(0, possibleValues.Length)], range.x, range.y);
+        return Mathf.Clamp(possibleValues[Random.Range(0, possibleValues.Length)], range.low, range.high);
     }
 
     private float RoundRotation(float value)
