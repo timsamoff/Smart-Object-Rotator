@@ -156,14 +156,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationSpeed: 100
   timeBeforeInitialRotation: 0
+  destinationDuration: 1
   transitionDuration: 10
-  destinationDuration: 15
   randomizeStartRotation: 1
   transitionType: 1
   logarithmicRolloff: 9
-  xRange: {x: -1, y: 1}
-  yRange: {x: -1, y: 1}
-  zRange: {x: -1, y: 1}
+  xRange:
+    low: -1
+    high: 1
+  yRange:
+    low: -1
+    high: 1
+  zRange:
+    low: -1
+    high: 1
   xRotation: 0
   yRotation: 0
   zRotation: 0
@@ -265,14 +271,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationSpeed: 50
   timeBeforeInitialRotation: 0
-  transitionDuration: 2
   destinationDuration: 5
+  transitionDuration: 2
   randomizeStartRotation: 0
   transitionType: 1
   logarithmicRolloff: 2
-  xRange: {x: -1, y: 1}
-  yRange: {x: -1, y: 1}
-  zRange: {x: -1, y: 1}
+  xRange:
+    low: -1
+    high: 1
+  yRange:
+    low: -1
+    high: 1
+  zRange:
+    low: -1
+    high: 1
   xRotation: 0
   yRotation: 0
   zRotation: 0
@@ -468,14 +480,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationSpeed: 25
   timeBeforeInitialRotation: 5
-  transitionDuration: 1
   destinationDuration: 2
+  transitionDuration: 1
   randomizeStartRotation: 0
   transitionType: 0
   logarithmicRolloff: 1
-  xRange: {x: -1, y: 1}
-  yRange: {x: -1, y: 1}
-  zRange: {x: -1, y: 1}
+  xRange:
+    low: -1
+    high: 1
+  yRange:
+    low: -0.5
+    high: 0.2
+  zRange:
+    low: 0.5
+    high: 1
   xRotation: 0
   yRotation: 0
   zRotation: 0
